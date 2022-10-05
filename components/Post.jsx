@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-const Post = ({}) => {
+const Post = ({ photo, author, company, title, body }) => {
   return (
     <View style={styledPost.post}>
       <Text style={styledPost.typography}>Author: Leanne Graham</Text>
