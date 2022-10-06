@@ -1,28 +1,33 @@
 import {useState} from 'react';
 import {useNavigation} from "@react-navigation/native";
-import auth from "../utilis/Auth";
 import Stack from "../Stack/Stack";
 import AuthScreen from "./AuthScreen";
 import Posts from "./Posts";
+import Api from "../utilis/Api";
+import {Alert} from "react-native";
 
 const AppProvider = () => {
     const navigation = useNavigation()
-    const [loggedIn, setIsLoggedIn] = useState(false);
-    const [email, setEmail] = useState("");
-    const [passWord, setPassWord] = useState("");
-    const [userData, setUserData] = useState('')
+    const [loggedIn, setIsLoggedIn] = useState(false)
+    const [email, setEmail] = useState("")
+    const [passWord, setPassWord] = useState("")
+    const [userData, setUserData] = useState({})
+    const api = new Api(userData)
+
     const submitSignIn = (evt) => {
-        evt.preventDefault();
-        auth.signIn(email, passWord)
-            .then((userData) => {
-                    setUserData(userData.userId)
-                    navigation.navigate(Posts)
-                    setIsLoggedIn(true)
-                    setEmail("")
-                    setPassWord("")
-                }
-            ).catch(() => auth.handleAuthError())
+        evt.preventDefault()
+        api.authtorization(email, passWord).then(response => {
+            setUserData(response)
+            setIsLoggedIn(true)
+            navigation.navigate(Posts)
+            setEmail("")
+            setPassWord("")
+        }).catch((error) => {
+            Alert.alert(`${error}`, 'Проверьте введенные данные')
+            setIsLoggedIn(false)
+        })
     }
+
     return (
         <Stack.Navigator
             initialRouteName="Auth"
@@ -52,3 +57,13 @@ const AppProvider = () => {
 };
 
 export default AppProvider;
+
+// auth.signIn(email, passWord)
+//     .then((userData) => {
+//         console.log(userData)
+//         setUserId(userData.userId)
+//         navigation.navigate(Posts)
+//
+//         setEmail("")
+//         setPassWord("")
+//     }
