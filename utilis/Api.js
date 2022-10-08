@@ -39,50 +39,43 @@ export default class Api {
 
   _getPhotos = (albums) => {
     if (albums != null) {
-      axios
-        .get(`https://jsonplaceholder.typicode.com/photos`)
-        .then(({ data }) => {
-          const albumFirstPhoto = [];
-          data
-            .sort((x) => x.photoId)
-            .forEach((photo) => {
-              if (
-                albumFirstPhoto.findIndex((x) => x.albumId == photo.albumId) ==
-                -1
-              ) {
-                albumFirstPhoto.push(photo);
-                const album = albums.find((x) => x.id == photo.albumId);
-                if (album != null) {
-                  album.firstPhoto = photo;
-                }
+      axios.get(`${this._baseUrl}/photos`).then(({ data }) => {
+        const albumFirstPhoto = [];
+        data
+          .sort((x) => x.photoId)
+          .forEach((photo) => {
+            if (
+              albumFirstPhoto.findIndex((x) => x.albumId == photo.albumId) == -1
+            ) {
+              albumFirstPhoto.push(photo);
+              const album = albums.find((x) => x.id == photo.albumId);
+              if (album != null) {
+                album.firstPhoto = photo;
               }
-            });
-          return albumFirstPhoto;
-        });
+            }
+          });
+        return albumFirstPhoto;
+      });
     }
   };
 
   _getPost = (userData) => {
     if (userData != null) {
-      axios
-        .get(`https://jsonplaceholder.typicode.com/posts`)
-        .then(({ data }) => {
-          const userFirstPost = [];
-          data
-            .sort((x) => x.postId)
-            .forEach((post) => {
-              if (
-                userFirstPost.findIndex((x) => x.userId == post.userId) == -1
-              ) {
-                userFirstPost.push(post);
-                const user = userData.find((x) => x.id == post.userId);
-                if (user != null) {
-                  user.firstPost = post;
-                }
+      axios.get(`${this._baseUrl}/posts`).then(({ data }) => {
+        const userFirstPost = [];
+        data
+          .sort((x) => x.postId)
+          .forEach((post) => {
+            if (userFirstPost.findIndex((x) => x.userId == post.userId) == -1) {
+              userFirstPost.push(post);
+              const user = userData.find((x) => x.id == post.userId);
+              if (user != null) {
+                user.firstPost = post;
               }
-            });
-          return userFirstPost;
-        });
+            }
+          });
+        return userFirstPost;
+      });
     }
   };
 
@@ -103,7 +96,7 @@ export default class Api {
 
   getUsersInformation = (setter) => {
     axios
-      .get("https://jsonplaceholder.typicode.com/users")
+      .get(`${this._baseUrl}/users`)
       .then((res) => {
         setter(res.data);
         return res.data;

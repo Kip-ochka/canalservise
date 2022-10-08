@@ -36,7 +36,6 @@ function AuthScreen({
           >
             <Text style={authStyled.authTypography}>Login</Text>
             <TextInput
-              keyboardType="email-address"
               style={isMobile ? authStyled.inputMobile : authStyled.inputTabs}
               onChangeText={(newText) => setEmail(newText)}
               value={email}
@@ -52,7 +51,6 @@ function AuthScreen({
             <Text style={authStyled.authTypography}>Password</Text>
             <TextInput
               style={isMobile ? authStyled.inputMobile : authStyled.inputTabs}
-              secureTextEntry={true}
               onChangeText={(newText) => setPassWord(newText)}
               value={passWord}
             />
