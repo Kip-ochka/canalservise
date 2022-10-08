@@ -33,13 +33,21 @@ function AuthScreen({navigation, loggedIn, email, setEmail, passWord, setPassWor
 }
 
 const authStyled = StyleSheet.create({
+
+    container:{
+flex:1
+    },
+
     wrapper: {
         borderColor: "#27569C",
         borderWidth: 5,
         marginLeft: 15,
         marginRight: 15,
         justifyContent: "center",
+        alignSelf:'center',
+        justifySelf:'center',
         alignItems: "center",
+        width:'45%'
     },
     title: {
         marginTop: 18,

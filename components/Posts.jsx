@@ -1,5 +1,5 @@
 import Post from "./Post";
-import {FlatList, View} from "react-native";
+import {FlatList, View, StyleSheet} from "react-native";
 import Header from "./Header";
 
 const Posts = ({loggedIn, setLoggedIn, allUsersFirstInfo}) => {
@@ -8,11 +8,19 @@ const Posts = ({loggedIn, setLoggedIn, allUsersFirstInfo}) => {
     };
 
     return (
-        <View>
+        <View style={style.postListWrapper}>
             <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
-            <FlatList data={allUsersFirstInfo} renderItem={renderPosts}/>
+            <FlatList data={allUsersFirstInfo} renderItem={renderPosts} style={style.postList}/>
         </View>
     )
 }
+const style = StyleSheet.create({
+    postList:{
+        height:'100%'
+    },
+    postListWrapper:{
+        height:'100%'
+    }
+})
 
 export default Posts;

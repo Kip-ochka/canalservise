@@ -19,7 +19,7 @@ const styledPost = StyleSheet.create({
     marginRight: 14,
     marginBottom: 10,
     minWidth: 292,
-    minHeight: 180,
+    minHeight: 200,
     flex:1,
     borderRadius: 6,
     borderColor: "#27569C",
