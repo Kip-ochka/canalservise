@@ -1,17 +1,23 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import Logo from "./LogoIcon";
+import LogoIconMobile from "./LogoIconMobile";
 import ExitIcon from "./ExitIcon";
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
+import LogoIconTabs from "./LogoIconTabs";
 
-const Header = ({ loggedIn, setLoggedIn }) => {
+const Header = ({ loggedIn, setLoggedIn, isMobile }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.header}>
       <StatusBar backgroundColor="#E4B062" />
       <View style={styles.headerWrapper}>
-        <Logo style={styles.logo} />
+        {isMobile ? (
+          <LogoIconMobile style={styles.logo} />
+        ) : (
+          <LogoIconTabs style={styles.logo} />
+        )}
+
         {loggedIn ? (
           <ExitIcon
             onPress={() => {

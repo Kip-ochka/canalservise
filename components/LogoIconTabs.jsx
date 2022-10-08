@@ -1,15 +1,15 @@
 import Svg, { Path, Defs, Pattern, Use, Image } from "react-native-svg";
 
-const LogoIcon = (props) => (
+const LogoIconTabs = (props) => (
   <Svg
-    width={70}
+    width={273}
     height={63}
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     {...props}
   >
-    <Path fill="url(#a)" d="M0 0h70v63H0z" />
+    <Path fill="url(#a)" d="M0 0h273v63H0z" />
     <Defs>
       <Pattern
         id="a"
@@ -17,7 +17,7 @@ const LogoIcon = (props) => (
         width={1}
         height={1}
       >
-        <Use xlinkHref="#b" transform="scale(.01429 .01587)" />
+        <Use xlinkHref="#b" transform="scale(.00366 .01587)" />
       </Pattern>
       <Image
         id="b"
@@ -29,4 +29,4 @@ const LogoIcon = (props) => (
   </Svg>
 );
 
-export default LogoIcon;
+export default LogoIconTabs;
