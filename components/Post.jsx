@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 
-const Post = ({ photo, author, company, title, body }) => {
+const Post = ({postData}) => {
+  console.log(postData)
   return (
     <View style={styledPost.post}>
-      <Text style={styledPost.typography}>Author: Leanne Graham</Text>
-      <Text style={styledPost.typography}>Company: Romaguera-Crona</Text>
+      <Text style={styledPost.typography}>Author: {postData.name}</Text>
+      <Text style={styledPost.typography}>Company: {postData.company.name}</Text>
       <Text style={styledPost.typography}>
-        Title:sunt aut facere repellat provident occaecati excepturi optio
-        reprehenderit
+        Title: {postData.firstPost.title}
       </Text>
     </View>
   );
@@ -19,7 +19,8 @@ const styledPost = StyleSheet.create({
     marginRight: 14,
     marginBottom: 10,
     minWidth: 292,
-    minHeight: 200,
+    minHeight: 180,
+    flex:1,
     borderRadius: 6,
     borderColor: "#27569C",
     borderWidth: 5,

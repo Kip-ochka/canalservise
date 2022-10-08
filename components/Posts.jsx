@@ -1,26 +1,18 @@
 import Post from "./Post";
-import { FlatList, View } from "react-native";
+import {FlatList, View} from "react-native";
 import Header from "./Header";
 
-const Posts = ({ loggedIn, setLoggedIn }) => {
+const Posts = ({loggedIn, setLoggedIn, allUsersFirstInfo}) => {
+    const renderPosts = ({item}) => {
+        return <Post postData={item}/>
+    };
 
-  const renderPosts = ({ item }) => (
-    <Post
-      key={item.id}
-      author={item.userId}
-      company={item.userId}
-      title={item.title}
-      body={item.body}
-    />
-  );
-
-
-  return (
-    <View>
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      <FlatList data={[]} renderItem={renderPosts} />
-    </View>
-  );
-};
+    return (
+        <View>
+            <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+            <FlatList data={allUsersFirstInfo} renderItem={renderPosts}/>
+        </View>
+    )
+}
 
 export default Posts;
